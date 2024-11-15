@@ -39,14 +39,14 @@ Dette prosjektet bruker Terraform for å sette opp en webserver og en MySQL (Mar
    git clone <repository-url>
    cd <repository-directory>
 2. **ENDRINGER I SCRIPT**
-    Endre til din egen subscription id i provider.tf
-    Gjør de endringene du vil i terraform.tfvars
+   - Endre til din egen subscription id i provider.tf
+   - Gjør de endringene du vil i terraform.tfvars
 3. **TERRAFORM**
-    az logout ; az login --scope https://management.core.windows.net//.default
-    terraform init
-    terraform plan -out main.tfplan
-    terraform apply
-    Kopier public ipen du blir foret med i terminalen.
+   - az logout ; az login --scope https://management.core.windows.net//.default
+   - terraform init
+   - terraform plan -out main.tfplan
+   - terraform apply
+   - Kopier public ipen du blir foret med i terminalen.
 4. **TESTING**
-    Bruk ipen i nettleseren, hvis du blir sendt til index.html i starten så er det ikke ferdigkonfigurert, fikser seg selv etterhvert. 
-    Eventuelt <ipaddresse>/hello.py
+   - Bruk ipen i nettleseren, hvis du blir sendt til index.html i starten så er det ikke ferdigkonfigurert, fikser seg selv etterhvert. 
+   - Eventuelt <ipaddresse>/hello.py
