@@ -9,3 +9,6 @@ output "web_subnet_id" {
 output "db_subnet_id" {
   value = azurerm_subnet.db_subnet.id
 }
+output "web_nsg_id" {
+  value = azurerm_network_security_group.web_nsg.id
+}

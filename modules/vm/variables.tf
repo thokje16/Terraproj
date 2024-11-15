@@ -39,3 +39,30 @@ variable "assign_public_ip" {
   description = "Angi om VM-en skal ha en offentlig IP-adresse"
   default     = false
 }
+variable "backend_pool_id" {
+  type        = string
+  description = "ID of the load balancer backend pool"
+  default     = null
+}
+variable "nsg_id" {
+  type        = string
+  description = "ID of the network security group"
+  default     = null
+}
+variable "storage_account_name" {
+  type        = string
+  description = "Name of the storage account for scripts"
+  default     = "mariadbinstalltest"
+}
+
+variable "storage_account_key" {
+  type        = string
+  description = "Storage account key for script access"
+  sensitive   = true
+
+}
+variable "install_script_url" {
+  description = "URL to the MariaDB installation script"
+  type        = string
+  default     = "mariadbinstalltest"
+}

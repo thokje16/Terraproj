@@ -12,3 +12,7 @@ output "loadbalancer_id" {
   value = module.loadbalancer.lb_id
   description = "ID-en til lastbalansereren"
 }
+variable "install_script_url" {
+  description = "URL to the MariaDB installation script"
+  type        = string
+}

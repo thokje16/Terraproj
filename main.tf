@@ -11,6 +11,13 @@ module "network" {
   depends_on          = [time_sleep.wait_for_rg]
 }
 
+module "db_install" {
+  source              = "./modules/db-install"
+  location            = var.location
+  resource_group_name = var.resource_group_name
+  depends_on          = [time_sleep.wait_for_rg]
+}
+
 module "web_vm" {
   source              = "./modules/vm"
   vm_name             = "web-server"
@@ -21,9 +28,19 @@ module "web_vm" {
   admin_username      = var.admin_username
   admin_password      = var.admin_password
   assign_public_ip    = true  # Kun web_vm får offentlig IP
-  depends_on          = [time_sleep.wait_for_rg]
+  nsg_id              = module.network.web_nsg_id
+  storage_account_name = module.db_install.storage_account_name
+  storage_account_key  = module.db_install.storage_account_key
+  install_script_url  = "https://mariadbinstalltest.blob.core.windows.net/play/playbook.yml"
+  depends_on          = [module.db_install, time_sleep.wait_for_rg]
+}
+output "debug_storage_account_name" {
+  value = module.db_install.storage_account_name
 }
 
+output "installurl" {
+  value = module.db_install.storage_account_name
+}
 module "db_vm" {
   source              = "./modules/vm"
   count               = 2  # To database-VM-er
@@ -35,7 +52,11 @@ module "db_vm" {
   admin_username      = var.admin_username
   admin_password      = var.admin_password
   assign_public_ip    = false # Ingen offentlig IP for db_vm
-  depends_on          = [time_sleep.wait_for_rg]
+  backend_pool_id     = module.loadbalancer.backend_pool_id
+  storage_account_name = module.db_install.storage_account_name
+  storage_account_key  = module.db_install.storage_account_key
+  install_script_url   = "https://mariadbinstalltest.blob.core.windows.net/install/install_mariadb.sh"
+  depends_on          = [module.db_install, time_sleep.wait_for_rg]
 }
 
 module "loadbalancer" {
