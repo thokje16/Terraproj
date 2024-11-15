@@ -1,6 +1,7 @@
 # Terraform-prosjekt for webserver og MySQL-database på Azure
 
-Dette prosjektet bruker Terraform for å sette opp en webserver og en MySQL (MariaDB)-database på Azure. Webserveren kjører Apache med et Python CGI-skript som kobler seg til MySQL-databasen.
+Dette prosjektet bruker Terraform for å sette opp en webserver og en MySQL (MariaDB)-database på Azure. Webserveren kjører Apache med et Python CGI-skript som kobler seg til MySQL-databasen. 
+Har brukt noe så innihelvete med tid på å få det til å funke. Har blitt veldig rotete i løpet av denne tiden, så vennligst tilgi at variabler osv ikke er definert i tfvars og satt litt her og der.
 
 ## Prosjektstruktur
 
