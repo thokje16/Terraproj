@@ -21,6 +21,9 @@ sudo dpkg -i *.deb || sudo apt-get install -f -y
 sudo systemctl enable mariadb
 sudo systemctl start mariadb
 
+sudo sed -i "s/^bind-address\s*=.*$/bind-address = 0.0.0.0/" /etc/mysql/mariadb.conf.d/50-server.cnf
+sudo systemctl restart mariadb
+
 # Secure installation
 sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '';"
 sudo mysql -e "CREATE USER 'thorjo'@'10.0.1.4' IDENTIFIED BY 'Passord123';"
